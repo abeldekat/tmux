@@ -1,0 +1,140 @@
+#
+# Basic theme
+# Refactored from: https://github.com/jimeh/tmux-themepack, basic theme
+
+# tsla means: themepack-status-left-area
+# tsra means: themepack-status-right-area
+# tws means: themepack-window-status
+# -lf means: -left-format
+# -mf means: -middle-format
+# -rf means: -right-format
+
+# Themepack format options
+# each item has a prefix, middle and postfix
+set -goq @tsla-lf "#S"
+set -goq @tsla-mf "#I"
+set -goq @tsla-rf "#P"
+set -goq @tsra-lf "#H"
+set -goq @tsra-mf "%H:%M:%S"
+set -goq @tsra-rf "%d-%b-%y"
+set -goq @tws-current-format "#I:#W#F"
+set -goq @tws-format "#I:#W#F"
+
+# Customizable prefixes and suffixes for @themepack-* format options
+set -goq @tsla-left-prefix ""
+set -goq @tsla-left-suffix ""
+set -goq @tsla-middle-prefix ""
+set -goq @tsla-middle-suffix ""
+set -goq @tsla-right-prefix ""
+set -goq @tsla-right-suffix ""
+set -goq @tsra-left-prefix ""
+set -goq @tsra-left-suffix ""
+set -goq @tsra-middle-prefix ""
+set -goq @tsra-middle-suffix ""
+set -goq @tsra-right-prefix ""
+set -goq @tsra-right-suffix ""
+set -goq @tws-current-prefix ""
+set -goq @tws-current-suffix ""
+set -goq @tws-prefix ""
+set -goq @tws-suffix ""
+
+# Apply prefixes and suffixes to @themepack-* format options
+set -gqF @tsla-lf "#{@tsla-left-prefix}#{@tsla-lf}#{@tsla-left-suffix}"
+set -gqF @tsla-mf "#{@tsla-middle-prefix}#{@tsla-mf}#{@tsla-middle-suffix}"
+set -gqF @tsla-rf "#{@tsla-right-prefix}#{@tsla-rf}#{@tsla-right-suffix}"
+set -gqF @tsra-lf "#{@tsra-left-prefix}#{@tsra-lf}#{@tsra-left-suffix}"
+set -gqF @tsra-mf "#{@tsra-middle-prefix}#{@tsra-mf}#{@tsra-middle-suffix}"
+set -gqF @tsra-rf "#{@tsra-right-prefix}#{@tsra-rf}#{@tsra-right-suffix}"
+set -gqF @tws-current-format "#{@tws-current-prefix}#{@tws-current-format}#{@tws-current-suffix}"
+set -gqF @tws-format "#{@tws-prefix}#{@tws-format}#{@tws-suffix}"
+
+# Theme options
+# colors:
+# default
+# black
+# green
+# cyan
+# red
+# fg=white fg=yellow fg=green
+set -goq  @theme-clock-mode-colour red
+set -goq  @theme-clock-mode-style 24
+set -goq  @theme-display-panes-active-colour default
+set -goq  @theme-display-panes-colour default
+set -goq  @theme-message-bg default
+set -goq  @theme-message-command-bg default
+set -goq  @theme-message-command-fg default
+set -goq  @theme-message-fg default
+set -goq  @theme-mode-bg red
+set -goq  @theme-mode-fg default
+set -goq  @theme-pane-active-border-bg default
+set -goq  @theme-pane-active-border-fg green
+set -goq  @theme-pane-border-bg default
+set -goq  @theme-pane-border-fg default
+set -goq  @theme-status-bg black
+set -goq  @theme-status-fg cyan
+set -goq  @theme-status-interval 1
+set -goq  @theme-status-justify centre
+set -goqF @theme-status-left "#{@tsla-lf} #[fg=white]» #[fg=yellow]#{@tsla-mf} #[fg=cyan]#{@tsla-rf}"
+set -goq  @theme-status-left-bg black
+set -goq  @theme-status-left-fg green
+set -goq  @theme-status-left-length 40
+set -goqF @theme-status-right "#{@tsra-lf} #[fg=white]« #[fg=yellow]#{@tsra-mf} #[fg=green]#{@tsra-rf}"
+set -goq  @theme-status-right-bg black
+set -goq  @theme-status-right-fg cyan
+set -goq  @theme-status-right-length 40
+set -goq  @theme-window-status-activity-bg black
+set -goq  @theme-window-status-activity-fg yellow
+set -goq  @theme-window-status-current-bg red
+set -goq  @theme-window-status-current-fg black
+set -goqF @theme-window-status-current-format " #{@tws-current-format} "
+set -goqF @theme-window-status-format " #{@tws-format} "
+set -goq  @theme-window-status-separator ""
+
+# Customizable prefixes and suffixes for @theme-* format options
+# lp left prefix
+# ls left suffix
+# rp right prefix
+# rs right suffix
+# cp current prefix
+# cs current suffix
+# p prefix
+# s suffix
+set -goq @theme-status-lp ""
+set -goq @theme-status-ls ""
+set -goq @theme-status-rp ""
+set -goq @theme-status-rs ""
+set -goq @theme-window-status-cp ""
+set -goq @theme-window-status-cs ""
+set -goq @theme-window-status-p ""
+set -goq @theme-window-status-s ""
+
+# Apply prefixes and suffixes to @theme-* format options
+set -gqF @theme-status-left "#{@theme-status-lp}#{@theme-status-left}#{@theme-status-ls}"
+set -gqF @theme-status-right "#{@theme-status-rp}#{@theme-status-right}#{@theme-status-rs}"
+set -gqF @theme-window-status-current-format "#{@theme-window-status-cp}#{@theme-window-status-current-format}#{@theme-window-status-cs}"
+set -gqF @theme-window-status-format "#{@theme-window-status-p}#{@theme-window-status-format}#{@theme-window-status-s}"
+
+# Apply @theme-* options to Tmux
+set -gF  display-panes-active-colour "#{@theme-display-panes-active-colour}"
+set -gF  display-panes-colour "#{@theme-display-panes-colour}"
+set -gF  message-command-style "fg=#{@theme-message-command-fg},bg=#{@theme-message-command-bg}"
+set -gF  message-style "fg=#{@theme-message-fg},bg=#{@theme-message-bg}"
+set -gF  status-interval "#{@theme-status-interval}"
+set -gF  status-justify "#{@theme-status-justify}"
+set -gF  status-left "#{@theme-status-left}"
+set -gF  status-left-length "#{@theme-status-left-length}"
+set -gF  status-left-style "fg=#{@theme-status-left-fg},bg=#{@theme-status-left-bg}"
+set -gF  status-right "#{@theme-status-right}"
+set -gF  status-right-length "#{@theme-status-right-length}"
+set -gF  status-right-style "fg=#{@theme-status-right-fg},bg=#{@theme-status-right-bg}"
+set -gF  status-style "fg=#{@theme-status-fg},bg=#{@theme-status-bg}"
+set -gwF clock-mode-colour "#{@theme-clock-mode-colour}"
+set -gwF clock-mode-style "#{@theme-clock-mode-style}"
+set -gwF mode-style "fg=#{@theme-mode-fg},bg=#{@theme-mode-bg}"
+set -gwF pane-active-border-style "fg=#{@theme-pane-active-border-fg},bg=#{@theme-pane-active-border-bg}"
+set -gwF pane-border-style "fg=#{@theme-pane-border-fg},bg=#{@theme-pane-border-bg}"
+set -gwF window-status-activity-style "fg=#{@theme-window-status-activity-fg},bg=#{@theme-window-status-activity-bg}"
+set -gwF window-status-current-format "#{@theme-window-status-current-format}"
+set -gwF window-status-current-style "fg=#{@theme-window-status-current-fg},bg=#{@theme-window-status-current-bg}"
+set -gwF window-status-format "#{@theme-window-status-format}"
+set -gwF window-status-separator "#{@theme-window-status-separator}"
