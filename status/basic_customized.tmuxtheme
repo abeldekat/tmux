@@ -25,7 +25,8 @@ set -goq @tsra-mf ""
 # set -goq @tsra-rf "%d-%b-%y"
 set -goq @tsra-rf ""
 set -goq @tws-current-format "#I:#W#F"
-set -goq @tws-format "#I:#W#F"
+# add a space before the "-" flag
+set -goq @tws-format "#I:#W#{s/-/ -/:window_flags}"
 #######################################################################
 
 #######################################################################
@@ -122,8 +123,8 @@ set -goq  @theme-window-status-activity-bg black
 set -goq  @theme-window-status-activity-fg yellow
 #
 # set -goq  @theme-window-status-current-bg red
-set -goq  @theme-window-status-current-bg default
-set -goq  @theme-window-status-current-fg default
+set -goq  @theme-window-status-current-bg yellow
+set -goq  @theme-window-status-current-fg black
 #
 set -goqF @theme-window-status-current-format " #{@tws-current-format} "
 set -goqF @theme-window-status-format " #{@tws-format} "
